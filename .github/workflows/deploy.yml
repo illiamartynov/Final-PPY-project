@@ -15,10 +15,10 @@ jobs:
 
       - name: Run tests
         run: |
-          python -m pip install -r requirments.txt
+          python -m pip install -r requirements.txt
           pytest test_app.py
         working-directory: .
 
       - name: Build Docker image
-        run: docker build -t snake:latest .
+        run: docker build -t app:latest .
         working-directory: .
