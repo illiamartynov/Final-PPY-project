@@ -7,22 +7,18 @@ from datetime import datetime
 class AppTestCase(unittest.TestCase):
 
     def setUp(self):
-        # Создание тестового клиента и включение тестирования
         self.app = app.test_client()
         self.app.testing = True
 
-        # Создание базы данных
         with app.app_context():
             db.create_all()
 
     def tearDown(self):
-        # Удаление базы данных после каждого теста
         with app.app_context():
             db.session.remove()
             db.drop_all()
 
     def test_add_message(self):
-        # Тест добавления сообщения
         response = self.app.post('/', data=dict(
             user='TestUser',
             message='This is a test message'
@@ -50,7 +46,6 @@ class AppTestCase(unittest.TestCase):
         self.assertIn(b'Message 2', response.data)
 
     def test_timestamp(self):
-        # Тест правильности сохранения времени отправки
         with app.app_context():
             msg = Message(user='TestUser', message='Test message', timestamp=datetime(2022, 1, 1, 12, 0, 0))
             db.session.add(msg)

@@ -14,5 +14,5 @@ def index():
         return redirect(url_for('index'))
 
     messages = Message.query.order_by(
-        Message.timestamp.desc()).all()  # Получение всех сообщений, отсортированных по времени отправки
+        Message.timestamp.desc()).all()
     return render_template('index.html', messages=messages)
