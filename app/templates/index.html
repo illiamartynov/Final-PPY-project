@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Simple Message App</h1>
+
+<form method="POST" action="/">
+    <label for="user">User:</label>
+    <input type="text" id="user" name="user" required>
+    <br>
+    <label for="message">Message:</label>
+    <input type="text" id="message" name="message" required>
+    <br>
+    <input type="submit" value="Submit">
+</form>
+
+<h2>Messages</h2>
+<ul>
+    {% for message in messages %}
+    <li><strong>{{ message.user }}:</strong> {{ message.message }} <em>at {{ message.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</em></li>
+    {% endfor %}
+</ul>
+{% endblock %}
